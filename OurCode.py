@@ -1,7 +1,7 @@
 import tkinter as tk
 #import turtle #commented this out because it creates a whole new screen
 
-class GridWidgetApp:
+class Level1:
     def __init__(self, root):
         self.root = root
         self.root.title("Tic_Tac_Toe game")
@@ -28,6 +28,6 @@ class GridWidgetApp:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = GridWidgetApp(root)
+    app = Level1(root)
 
     root.mainloop()
