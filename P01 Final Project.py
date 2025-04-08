@@ -35,5 +35,5 @@ def draw_x(center_x, center_y, size):
 
 
 def main():
-    draw_x(0,0,100)
+    draw_x(0,2,100)
 main()
