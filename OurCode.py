@@ -21,12 +21,21 @@ class Level1:
 
     def human_turn(self, row, column):
         ''' this draws the human initial to the screen'''
-        self.buttons[row][column]['text'] = "X" # searched how to write down a text on the button
-        self.buttons[row][column]['state'] = 'disabled' # searched how to disable button
+        self.buttons[row][column]['text'] = "X" # writing down the symbol on the button
+        self.buttons[row][column]['state'] = 'disabled' # disabling the button
         self.root.after(1000, self.computer_turn)  # searched how to delay before calling
         if self.check_winner():
             return
 
+    def max_computer_win(self):
+        pass
+
+    def UserSymbolAndColor(self):
+        '''search how to change text color, button color and add a user input '''
+        pass
+
+    def CompSymbolandColor(self):
+        pass
 
     def computer_turn(self):
         '''for now the computer is randomly placing its symbol, until we write a method that maximizes win'''
