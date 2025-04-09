@@ -58,7 +58,12 @@ Reflect on what you’ve done so far. How’s it going? Are you feeling behind/a
 What has surprised you so far? Describe your general feelings. Be honest with yourself; this section is for you, not me.
 
 ```
-    **Replace this text with your reflection
+    So far we have done around 45% of game. We have written the methods and class for the first level and we have started
+    to work on our test suite. We are feeling a little bit ahead because we have an idea of the additioanl methods that 
+    need to be added. Furthermore, we are also coming up with ways to improve our game and make it more engaging. 
+    Everything so far is working smoothing, we manage to communicate effectively and we have a good team dynamic therefore, 
+    we don't really have much to worry out for now. We were surprised by how "easy" widgets can actually be if we properly 
+    read about them to understand how they work. We are feeling quite confident and we hope it keeps going that way. 
 ```
 
 ---
