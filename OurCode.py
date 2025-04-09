@@ -24,6 +24,9 @@ class Level1:
         self.buttons[row][column]['text'] = "X" # searched how to write down a text on the button
         self.buttons[row][column]['state'] = 'disabled' # searched how to disable button
         self.root.after(1000, self.computer_turn)  # searched how to delay before calling
+        if self.check_winner():
+            return
+
 
     def computer_turn(self):
         '''for now the computer is randomly placing its symbol, until we write a method that maximizes win'''
@@ -33,8 +36,36 @@ class Level1:
         if available_buttons:
             row, column = random.choice(available_buttons)
             self.buttons[row][column]['text'] = "O" #for now we go with the symbol O. we now need to find a way to make it chose random symbol from a list
-
             self.buttons[row][column]['state'] = 'disabled' #disabling the use of a button twice
+            if self.check_winner():
+                return
+
+    def check_winner(self):
+        'Checks for a winner by looking at the rows columns and diagonals'
+        # Check rows
+        for i in range(3):
+            if self.buttons[i][0]['text'] == self.buttons[i][1]['text'] == self.buttons[i][2]['text'] and self.buttons[i][0]['text'] != '':
+                self.pick_winner(self.buttons[i][0]['text'])
+                return True
+            # Check Columns
+        for j in range(3):
+
+            pass
+        return False
+
+    def pick_winner(self, winner):
+        'picks the winner and disable all buttons'
+        for i in range(3):
+            for j in range(3):
+                self.buttons[i][j]['state'] = 'disabled'  # Disable all buttons
+        result = f"{winner} wins!"
+        self.display_message(result)
+
+    def display_message(self, message):
+        'Shows the winner'
+        result_label = tk.Label(self.root, text=message, font=("Arial", 20))
+        result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
+
 
 if __name__ == "__main__":
     root = tk.Tk()
