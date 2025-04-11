@@ -47,7 +47,7 @@ class Level1:
 
     def computer_color(self):
         '''the computer is randomly picking a color'''
-        color_options = ["lightpink", "gold", "salmon", "turquoise" "lightblue", "lightgrey", "lightgreen", "lightorange"]
+        color_options = ["lightpink", "gold", "salmon", "turquoise", "lightblue", "lightgrey", "lightgreen", "lightorange"]
         color = random.choice(color_options)
         if color:
             self.comp_color = color
