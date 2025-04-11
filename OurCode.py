@@ -36,7 +36,7 @@ class Level1:
         pass
 
     def choose_color_and_symbol(self):
-'''this enables the user to choose a color and a symbol'''
+ '''this enables the user to choose a color and a symbol'''
         symbol = simpledialog.askstring("Choose Symbol", "Enter your symbol (e.g. X, G.O.A.T, Tom):")
         if symbol:
             self.human_symbol = symbol
@@ -45,6 +45,20 @@ class Level1:
         if color:
             self.human_color = color
 
+    def computer_color(self):
+        '''the computer is randomly picking a color'''
+        color_options = ["lightpink", "gold", "salmon", "turquoise" "lightblue", "lightgrey", "lightgreen", "lightorange"]
+        color = random.choice(color_options)
+        if color:
+            self.comp_color = color
+
+    def computer_symbol(self):
+        '''the computer is randomly picking a symbol'''
+        symbol_options = ["Moana", "Blue", "Error 404", "Player"]
+        symbol = random.choice(symbol_options)
+        if symbol:
+            self.comp_symbol = symbol
+
     def computer_turn(self):
 
         available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == ''] # checking if which
@@ -52,9 +66,9 @@ class Level1:
                                                                         #by checking the boxes that don't have any text in them
         if available_buttons:
             row, column = random.choice(available_buttons)
-            self.buttons[row][column]['text'] = "O" #for now we go with the symbol O. we now need to find a way to make it chose random symbol from a list
+            self.buttons[row][column]['text'] = self.comp_symbol #for now we go with the symbol O. we now need to find a way to make it chose random symbol from a list
             self.buttons[row][column]['state'] = 'disabled' #disabling the use of a button twice
-
+            self.buttons[row][column]['bg'] = self.comp_color
             if self.check_winner():
                 return
 
