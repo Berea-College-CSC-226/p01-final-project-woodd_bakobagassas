@@ -36,7 +36,7 @@ class Level1:
         pass
 
     def choose_color_and_symbol(self):
- '''this enables the user to choose a color and a symbol'''
+        '''this enables the user to choose a color and a symbol'''
         symbol = simpledialog.askstring("Choose Symbol", "Enter your symbol (e.g. X, G.O.A.T, Tom):")
         if symbol:
             self.human_symbol = symbol
@@ -81,8 +81,13 @@ class Level1:
                 return True
             # Check Columns
         for j in range(3):
-
-            pass
+            if self.buttons[0][j]['text'] == self.buttons[1][j]['text'] == self.buttons[2][j]['text'] and self.buttons[0][j]['text']!= '':
+                self.pick_winner(self.buttons[0][j]['text'])
+                return True
+        for k in range(3):
+            if self.buttons[0][0]['text'] == self.buttons[1][1]['text'] == self.buttons[2][2]['text'] and self.buttons[0][0]['text'] != '':
+                self.pick_winner(self.buttons[0][0]['text'])
+                return True
         return False
 
     def pick_winner(self, winner):
