@@ -47,7 +47,12 @@ class Level1:
         if self.check_winner():
             return
 
-    def max_computer_win(self):
+    def max_win_level1(self):
+        '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win'''
+        pass
+
+    def max_win_level2(self):
+        '''with this method, the computer tries to prevent user from winning and the computer is not trying to win'''
         pass
 
     def choose_color_and_symbol(self):
