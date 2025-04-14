@@ -12,6 +12,14 @@ class Level1:
         self.choose_color_and_symbol()
         self.computer_color()
         self.computer_symbol()
+        self.score = 0
+        self.level = 1
+        self.display_level()
+
+    def display_level(self):
+        '''this is to display the level'''
+        self.level_text = tk.Label(root, text="Level: 1", font=("Arial", 8), bg="grey")
+        self.level_text.place(x=400, y=0)
 
     def create_buttons(self):
         for i in range(3):
