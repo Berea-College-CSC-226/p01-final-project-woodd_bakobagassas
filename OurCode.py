@@ -49,6 +49,15 @@ class Level1:
 
     def max_win_level1(self):
         '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win'''
+        for i in range(3):
+            if self.buttons[i][0][self.human_symbol] == self.buttons[i][1][self.human_symbol] and self.buttons[i][0]['text'] = '':
+                pick empty place
+            if self.buttons[0][i][self.human_symbol] == self.buttons[1][i][self.human_symbol] == self.buttons[2][i]['text'] and self.buttons[0][j]['text'] = '':
+                pick empty place
+        if self.buttons[0][0]['text'] == self.buttons[1][1]['text'] == self.buttons[2][2]['text'] and self.buttons[0][0]['text'] != '':
+                pick empty place
+        if self.buttons[0][2]['text'] == self.buttons[1][1]['text'] == self.buttons[2][0]['text'] and self.buttons[0][0]['text'] != '':
+                pick empty place
         pass
 
     def max_win_level2(self):
@@ -109,10 +118,22 @@ class Level1:
         for j in range(3):
             if self.buttons[0][j]['text'] == self.buttons[1][j]['text'] == self.buttons[2][j]['text'] and self.buttons[0][j]['text']!= '':
                 self.pick_winner(self.buttons[0][j]['text'])
+                if "text" ==  self.comp_symbol:
+                    self.comp_score += 1
+                    self.display_score()
+                if "text" ==  self.human_symbol:
+                    self.human_score += 1
+                    self.display_score()
                 return True
         for k in range(3):
             if self.buttons[0][0]['text'] == self.buttons[1][1]['text'] == self.buttons[2][2]['text'] and self.buttons[0][0]['text'] != '':
                 self.pick_winner(self.buttons[0][0]['text'])
+                if "text" ==  self.comp_symbol:
+                    self.comp_score += 1
+                    self.display_score()
+                if "text" ==  self.human_symbol:
+                    self.human_score += 1
+                    self.display_score()
                 return True
         return False
 
