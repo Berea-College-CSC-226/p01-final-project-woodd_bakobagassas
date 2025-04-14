@@ -98,6 +98,12 @@ class Level1:
         for i in range(3):
             if self.buttons[i][0]['text'] == self.buttons[i][1]['text'] == self.buttons[i][2]['text'] and self.buttons[i][0]['text'] != '':
                 self.pick_winner(self.buttons[i][0]['text'])
+                if "text" ==  self.comp_symbol:
+                    self.comp_score += 1
+                    self.display_score()
+                if "text" ==  self.human_symbol:
+                    self.human_score += 1
+                    self.display_score()
                 return True
             # Check Columns
         for j in range(3):
