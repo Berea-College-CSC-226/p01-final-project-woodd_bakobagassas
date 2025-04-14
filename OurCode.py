@@ -47,12 +47,7 @@ class Level1:
         if self.check_winner():
             return
 
-    def max_win_level1(self):
-        '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win'''
-        pass
-
-    def max_win_level2(self):
-        '''with this method, the computer tries to prevent user from winning and the computer is not trying to win'''
+    def max_computer_win(self):
         pass
 
     def choose_color_and_symbol(self):
@@ -74,7 +69,7 @@ class Level1:
 
     def computer_symbol(self):
         '''the computer is randomly picking a symbol'''
-        symbol_options = ["Moana", "Blue", "Error 404", "Player"]
+        symbol_options = ["Moana", "Blue", "Error 404", "Player", "PC","Friend"]
         symbol = random.choice(symbol_options)
         if symbol:
             self.comp_symbol = symbol
@@ -104,11 +99,26 @@ class Level1:
             if self.buttons[0][j]['text'] == self.buttons[1][j]['text'] == self.buttons[2][j]['text'] and self.buttons[0][j]['text']!= '':
                 self.pick_winner(self.buttons[0][j]['text'])
                 return True
-        for k in range(3):
+            'Check diagonal'
             if self.buttons[0][0]['text'] == self.buttons[1][1]['text'] == self.buttons[2][2]['text'] and self.buttons[0][0]['text'] != '':
                 self.pick_winner(self.buttons[0][0]['text'])
+            'check other diagonal'
+            if self.buttons[0][2]['text'] == self.buttons[1][1]['text'] == self.buttons[2][0]['text'] and \
+                    self.buttons[0][2]['text'] != '':
+                self.pick_winner(self.buttons[0][2]['text'])
                 return True
+            'check draw'
+        if all(self.buttons[i][j]['state'] == 'disabled' for i in range(3) for j in range(3)):
+            self.check_draw()
+            return True
         return False
+
+    def check_draw(self):
+        'draw and disable all buttons'
+        for i in range(3):
+            for j in range(3):
+                self.buttons[i][j]['state'] = 'disabled'  # Disable all buttons
+        self.display_message("It's a draw!")
 
     def pick_winner(self, winner):
         'picks the winner and disable all buttons'
