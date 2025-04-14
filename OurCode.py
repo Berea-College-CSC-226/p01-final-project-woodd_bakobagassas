@@ -12,13 +12,20 @@ class Level1:
         self.choose_color_and_symbol()
         self.computer_color()
         self.computer_symbol()
-        self.score = 0
+        self.human_score = 0
+        self.comp_score = 0
         self.level = 1
         self.display_level()
+        self.display_score()
 
     def display_level(self):
-        '''this is to display the level'''
+        '''this is to display the level, still need to set it up for level change when needed'''
         self.level_text = tk.Label(root, text="Level: 1", font=("Arial", 8), bg="grey")
+        self.level_text.place(x=350, y=0)
+
+    def display_score(self):
+        '''this is to display the score, still need to set it up for score change when needed'''
+        self.level_text = tk.Label(root, text= self.human_symbol + " score is:" + " " + str(self.human_score) + "  " + self.comp_symbol + " " + "score is:" + str(self.comp_score), font=("Arial", 8), bg="white")
         self.level_text.place(x=400, y=0)
 
     def create_buttons(self):
