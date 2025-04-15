@@ -47,19 +47,6 @@ class Level1:
         if self.check_winner():
             return
 
-    def max_win_level1(self):
-        '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win'''
-        for i in range(3):
-            if self.buttons[i][0][self.human_symbol] == self.buttons[i][1][self.human_symbol] and self.buttons[i][0]['text'] = '':
-                pick empty place
-            if self.buttons[0][i][self.human_symbol] == self.buttons[1][i][self.human_symbol] == self.buttons[2][i]['text'] and self.buttons[0][j]['text'] = '':
-                pick empty place
-        if self.buttons[0][0]['text'] == self.buttons[1][1]['text'] == self.buttons[2][2]['text'] and self.buttons[0][0]['text'] != '':
-                pick empty place
-        if self.buttons[0][2]['text'] == self.buttons[1][1]['text'] == self.buttons[2][0]['text'] and self.buttons[0][0]['text'] != '':
-                pick empty place
-        pass
-
     def max_win_level2(self):
         '''with this method, the computer tries to prevent user from winning and the computer is not trying to win'''
         pass
@@ -90,7 +77,7 @@ class Level1:
 
     def computer_turn(self):
 
-        available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == ''] # checking if which
+        available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == ''] # checking which
                                                                         #box is available amongst the total 9 boxes
                                                                         #by checking the boxes that don't have any text in them
         if available_buttons:
@@ -149,6 +136,44 @@ class Level1:
         'Shows the winner'
         result_label = tk.Label(self.root, text=message, font=("Arial", 20))
         result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
+
+class level2:
+
+    def __init__(self, root):
+
+    def max_win_level1(self):
+        '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win
+        this method will be used in our second class for level 1 instead of using the method that ranmly places computer symbol'''
+        #for the columns
+        for i in range(3):
+            if self.buttons[i][0][self.human_symbol] == self.buttons[i][1][self.human_symbol] and self.buttons[i][2]['text'] = '':
+                pick empty place
+            if self.buttons[i][1][self.human_symbol] == self.buttons[i][2][self.human_symbol] and self.buttons[i][0]['text'] = '':
+                pick empty place
+            if self.buttons[i][0][self.human_symbol] == self.buttons[i][2][self.human_symbol] and self.buttons[i][1]['text'] = '':
+                pick empty place
+        #for rows
+            if self.buttons[0][i][self.human_symbol] == self.buttons[1][i][self.human_symbol] and self.buttons[2][j]['text'] = '':
+                pick empty place
+            if self.buttons[0][i][self.human_symbol] == self.buttons[2][i][self.human_symbol] and self.buttons[1][j]['text'] = '':
+                pick empty place
+            if self.buttons[1][i][self.human_symbol] == self.buttons[2][i][self.human_symbol] and self.buttons[0][j]['text'] = '':
+                pick empty place
+        #for the diagonals
+        if self.buttons[0][0][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[2][2]['text'] = '':
+                pick empty place
+        if self.buttons[0][0][self.human_symbol] == self.buttons[2][2][self.human_symbol] and self.buttons[1][1]['text'] = '':
+                pick empty place
+        if self.buttons[2][2][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[0][0]['text'] = '':
+                pick empty place
+        if self.buttons[0][2][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[2][0]['text'] = '':
+                pick empty place
+        if self.buttons[0][2][self.human_symbol] == self.buttons[2][0][self.human_symbol] and self.buttons[1][1]['text'] = '':
+                pick empty place
+        if self.buttons[2][0][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[0][2]['text'] = '':
+                pick empty place
+
+
 
 
 if __name__ == "__main__":
