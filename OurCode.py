@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-from tkinter import colorchooser, simpledialog
+from tkinter import colorchooser, simpledialog, messagebox
 #import turtle #commented this out because it creates a whole new screen
 
 class Level1:
@@ -132,6 +132,12 @@ class Level1:
         'Shows the winner'
         result_label = tk.Label(self.root, text=message, font=("Arial", 20))
         result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
+
+    def ask_reset_game(self):
+        '''asks the user if they want to reset the game'''
+        result = messagebox.askyesno("Reset Game", "Do you want to reset the game?")
+        if result:  # User confirmed
+            self.reset_game()
 
 
 if __name__ == "__main__":
