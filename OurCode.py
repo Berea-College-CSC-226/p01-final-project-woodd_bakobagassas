@@ -134,10 +134,19 @@ class Level1:
         result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
 
     def ask_reset_game(self):
-        '''asks the user if they want to reset the game'''
+        'asks if they want to restart the game'
         result = messagebox.askyesno("Reset Game", "Do you want to reset the game?")
         if result:  # User confirmed
             self.reset_game()
+
+    def reset_game(self):
+        'Restarts the game'
+        # Reset buttons
+        for i in range(3):
+            for j in range(3):
+                self.buttons[i][j]['text'] = ''
+                self.buttons[i][j]['state'] = 'normal'
+                self.buttons[i][j]['bg'] = 'lightgrey'
 
 
 if __name__ == "__main__":
