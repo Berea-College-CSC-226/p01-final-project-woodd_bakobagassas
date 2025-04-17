@@ -27,8 +27,10 @@ class Level1:
 
     def display_score(self):
         '''this is to display the score, still need to set it up for score change when needed'''
-        self.level_text = tk.Label(root, text= self.human_symbol + " score is:" + " " + str(self.human_score) + "  " + self.comp_symbol + " " + "score is:" + str(self.comp_score), font=("Arial", 8), bg="white")
-        self.level_text.place(x=400, y=0)
+        self.score_label = tk.Label(root, text=self.human_symbol + " score is:" + " " + str(self.human_score) + "  "
+        + self.comp_symbol + " " + "score is:" + str(self.comp_score),font=("Arial", 8), bg="white")
+
+        self.score_label.place(x=400, y=0)
 
     def create_buttons(self):
         for i in range(3):
@@ -45,9 +47,10 @@ class Level1:
         self.buttons[row][column]['text'] = self.human_symbol # writing down the symbol on the button
         self.buttons[row][column]['state'] = 'disabled' # disabling the button
         self.buttons[row][column]['bg'] = self.human_color
-        self.root.after(1000, self.computer_turn)  # searched how to delay before calling
         if self.check_winner():
             return
+        if not self.game_over:
+            self.root.after(1000, self.computer_turn)
 
     def max_computer_win(self):
         pass
@@ -134,17 +137,17 @@ class Level1:
 
     def display_message(self, message):
         'Shows the winner'
-        self.result_label = tk.Label(self.root, text=message, font=("Arial", 20))
-        self.result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
-        self.ask_reset_game()
         if self.result_label:
             self.result_label.destroy()
-        self.result_label = tk.Label(self.root, text=message, font=("Arial", 20), bg="white")
-        self.result_label.grid(row=1, column=1, columnspan=1)
-        self.root.after(1500, self.ask_reset_game)  # Delay reset prompt
+
+        self.result_label = tk.Label(self.root, text=message, font=("Arial", 20))
+        self.result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
+
+        self.root.after(1500, self.ask_reset_game)
 
     def ask_reset_game(self):
         'asks if they want to restart the game'
+        self.game_over = False
         result = messagebox.askyesno("Reset Game", "Do you want to reset the game?")
         if result:  # User confirmed
             self.reset_game()
@@ -156,14 +159,12 @@ class Level1:
             for j in range(3):
                 self.buttons[i][j]['text'] = ''
                 self.buttons[i][j]['state'] = 'normal'
-            self.display_score()
             self.buttons[i][j]['bg'] = 'lightgrey'
 
         # Reset scores and level
         self.human_score = 0
         self.comp_score = 0
         self.level = 1
-        self.display_level()
 
         #resets symbol and color
         self.choose_color_and_symbol()
