@@ -17,6 +17,7 @@ class Level1:
         self.level = 1
         self.display_level()
         self.display_score()
+        self.result_label = None
 
     def display_level(self):
         '''this is to display the level, still need to set it up for level change when needed'''
@@ -130,8 +131,14 @@ class Level1:
 
     def display_message(self, message):
         'Shows the winner'
-        result_label = tk.Label(self.root, text=message, font=("Arial", 20))
-        result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
+        self.result_label = tk.Label(self.root, text=message, font=("Arial", 20))
+        self.result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
+        self.ask_reset_game()
+        if self.result_label:
+            self.result_label.destroy()
+        self.result_label = tk.Label(self.root, text=message, font=("Arial", 20), bg="white")
+        self.result_label.grid(row=1, column=1, columnspan=1)
+        self.root.after(1500, self.ask_reset_game)  # Delay reset prompt
 
     def ask_reset_game(self):
         'asks if they want to restart the game'
@@ -146,7 +153,25 @@ class Level1:
             for j in range(3):
                 self.buttons[i][j]['text'] = ''
                 self.buttons[i][j]['state'] = 'normal'
-                self.buttons[i][j]['bg'] = 'lightgrey'
+            self.display_score()
+            self.buttons[i][j]['bg'] = 'lightgrey'
+
+        # Reset scores and level
+        self.human_score = 0
+        self.comp_score = 0
+        self.level = 1
+        self.display_level()
+
+        #resets symbol and color
+        self.choose_color_and_symbol()
+        self.computer_color()
+        self.computer_symbol()
+
+        #update level 
+        if hasattr(self, 'level_text'):
+            self.level_text.destroy()
+        self.level_text = tk.Label(self.root, text="Level: 1", font=("Arial", 8), bg="grey")
+        self.level_text.place(x=350, y=0)
 
 
 if __name__ == "__main__":
