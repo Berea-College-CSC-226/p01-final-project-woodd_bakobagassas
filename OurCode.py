@@ -18,6 +18,7 @@ class Level1:
         self.display_level()
         self.display_score()
         self.result_label = None
+        self.game_over = False
 
     def display_level(self):
         '''this is to display the level, still need to set it up for level change when needed'''
@@ -116,6 +117,7 @@ class Level1:
 
     def check_draw(self):
         'draw and disable all buttons'
+        self.game_over = True
         for i in range(3):
             for j in range(3):
                 self.buttons[i][j]['state'] = 'disabled'  # Disable all buttons
@@ -123,6 +125,7 @@ class Level1:
 
     def pick_winner(self, winner):
         'picks the winner and disable all buttons'
+        self.game_over = True
         for i in range(3):
             for j in range(3):
                 self.buttons[i][j]['state'] = 'disabled'  # Disable all buttons
@@ -167,12 +170,23 @@ class Level1:
         self.computer_color()
         self.computer_symbol()
 
-        #update level 
+        #update level
         if hasattr(self, 'level_text'):
             self.level_text.destroy()
         self.level_text = tk.Label(self.root, text="Level: 1", font=("Arial", 8), bg="grey")
         self.level_text.place(x=350, y=0)
 
+        #resets score
+        if hasattr(self, 'score_label'):
+            self.score_label.destroy()
+        self.score_label = tk.Label(root, text=self.human_symbol + " score is: " + str(self.human_score) +
+                                               "  " + self.comp_symbol + " score is: " + str(self.comp_score),
+                                    font=("Arial", 8), bg="white")
+        self.score_label.place(x=400, y=0)
+        #reset win label
+        if self.result_label:
+            self.result_label.destroy()
+            self.result_label = None
 
 if __name__ == "__main__":
     root = tk.Tk()
