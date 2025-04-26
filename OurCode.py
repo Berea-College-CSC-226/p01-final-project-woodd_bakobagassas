@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-from tkinter import colorchooser, simpledialog
+from tkinter import colorchooser, simpledialog, messagebox
 #import turtle #commented this out because it creates a whole new screen
 
 class Level1:
@@ -118,10 +118,11 @@ class Level1:
                     self.human_score += 1
                     self.display_score()
                 return True
-            'Check diagonal'
+            #Check diagonal
             if self.buttons[0][0]['text'] == self.buttons[1][1]['text'] == self.buttons[2][2]['text'] and self.buttons[0][0]['text'] != '':
                 self.pick_winner(self.buttons[0][0]['text'])
-            'check other diagonal'
+
+            #check other diagonal
             if self.buttons[0][2]['text'] == self.buttons[1][1]['text'] == self.buttons[2][0]['text'] and \
                     self.buttons[0][2]['text'] != '':
                 self.pick_winner(self.buttons[0][2]['text'])
@@ -132,19 +133,19 @@ class Level1:
                     self.human_score += 1
                     self.display_score()
                 return True
+
             'check draw'
-        if all(self.buttons[i][j]['state'] == 'disabled' for i in range(3) for j in range(3)):
-            self.check_draw()
-            return True
+            # Check for draw only if no one has won and all buttons are disabled
+            if all(self.buttons[i][j]['text'] != '' for i in range(3) for j in range(3)):
+                self.check_draw()
+                return True
         return False
 
     def check_draw(self):
         'draw and disable all buttons'
-        self.game_over = True
-        for i in range(3):
-            for j in range(3):
-                self.buttons[i][j]['state'] = 'disabled'  # Disable all buttons
-        self.display_message("It's a draw!")
+        if not self.game_over:
+            self.game_over = True
+            self.display_message("It's a draw!")
 
     def pick_winner(self, winner):
         'picks the winner and disable all buttons'
