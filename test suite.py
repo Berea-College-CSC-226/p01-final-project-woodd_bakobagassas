@@ -74,7 +74,7 @@ class TestTicTacToe(unittest.TestCase):
         self.buttons = [[Button() for _ in range(3)] for _ in range(3)]
         # Initialize the TicTacToe game
         self.game = TicTacToe(root=None, buttons=self.buttons)
-
+        print('True')
     def test_check_winner_row(self):
         # test a row win with 'X'
         self.buttons[0][0].text = 'X'
@@ -87,16 +87,18 @@ class TestTicTacToe(unittest.TestCase):
         self.assertEqual(self.buttons[0][0].state, 'disabled')
         self.assertEqual(self.buttons[0][1].state, 'disabled')
         self.assertEqual(self.buttons[0][2].state, 'disabled')
-
+        print('True')
 
     def test_pick_winner(self):
         # test a winner 'X'
         winner = 'X'
 
+
         # Before picking winner, buttons are on
         for i in range(3):
             for j in range(3):
                 self.buttons[i][j].state = 'normal'
+        print('True')
 
         # Call pick_winner
         self.game.pick_winner(winner)
@@ -105,6 +107,7 @@ class TestTicTacToe(unittest.TestCase):
         for i in range(3):
             for j in range(3):
                 self.assertEqual(self.buttons[i][j].state, 'disabled')
+        print('True')
 
     def test_display_message(self):
         # Tests if the message is shown correctly
@@ -112,6 +115,7 @@ class TestTicTacToe(unittest.TestCase):
         result_label = self.game.display_message(message)
         self.assertEqual(result_label.text, message)
         self.assertEqual(result_label.font, ("Arial", 20))
+        print('True')
 
 
 if __name__ == '__main__':
