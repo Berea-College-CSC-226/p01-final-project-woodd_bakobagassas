@@ -149,12 +149,15 @@ class Level1:
 
     def pick_winner(self, winner):
         'picks the winner and disable all buttons'
-        self.game_over = True
-        for i in range(3):
-            for j in range(3):
-                self.buttons[i][j]['state'] = 'disabled'  # Disable all buttons
-        result = f"{winner} wins!"
-        self.display_message(result)
+
+        if not self.game_over:
+            self.game_over = True
+            if winner == self.human_symbol:
+                self.human_score += 1
+            elif winner == self.comp_symbol:
+                self.comp_score += 1
+            self.display_score()
+            self.display_message(f"{winner} wins!")
 
     def display_message(self, message):
         'Shows the winner'
@@ -162,8 +165,9 @@ class Level1:
             self.result_label.destroy()
 
         self.result_label = tk.Label(self.root, text=message, font=("Arial", 20))
-        self.result_label.grid(row=1, column=1, columnspan=1)  # Display the message in the middle
+        self.result_label.grid(row=1, column=1, columnspan=1)
 
+        # Ask once after showing the message
         self.root.after(1500, self.ask_reset_game)
 
     def ask_reset_game(self):
