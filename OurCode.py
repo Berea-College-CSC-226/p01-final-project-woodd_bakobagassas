@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-from tkinter import colorchooser, simpledialog, messagebox
+from tkinter import colorchooser, simpledialog
 #import turtle #commented this out because it creates a whole new screen
 
 class Level1:
@@ -9,6 +9,7 @@ class Level1:
         self.root.title("Tic_Tac_Toe game")
         self.buttons = []
         self.create_buttons()
+        self.available_buttons = []
         self.choose_color_and_symbol()
         self.computer_color()
         self.computer_symbol()
@@ -82,11 +83,11 @@ class Level1:
 
     def computer_turn(self):
 
-        available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == ''] # checking which
+        self.available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == ''] # checking which
                                                                         #box is available amongst the total 9 boxes
                                                                         #by checking the boxes that don't have any text in them
-        if available_buttons:
-            row, column = random.choice(available_buttons)
+        if self.available_buttons:
+            row, column = random.choice(self.available_buttons)
             self.buttons[row][column]['text'] = self.comp_symbol #for now we go with the symbol O. we now need to find a way to make it chose random symbol from a list
             self.buttons[row][column]['state'] = 'disabled' #disabling the use of a button twice
             self.buttons[row][column]['bg'] = self.comp_color
@@ -207,42 +208,48 @@ class Level1:
         if self.result_label:
             self.result_label.destroy()
             self.result_label = None
-class level2:
+class level2(Level1):
 
     def __init__(self, root):
+        super().__init__(root)
 
-    def max_win_level1(self):
+    def computer_turn(self):
         '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win
         this method will be used in our second class for level 1 instead of using the method that ranmly places computer symbol'''
         #for the columns
+        self.available_buttons = []
         for i in range(3):
-            if self.buttons[i][0][self.human_symbol] == self.buttons[i][1][self.human_symbol] and self.buttons[i][2]['text'] = '':
-                pick empty place
-            if self.buttons[i][1][self.human_symbol] == self.buttons[i][2][self.human_symbol] and self.buttons[i][0]['text'] = '':
-                pick empty place
-            if self.buttons[i][0][self.human_symbol] == self.buttons[i][2][self.human_symbol] and self.buttons[i][1]['text'] = '':
-                pick empty place
+            if (self.buttons[i][0]['text'] == self.human_symbol and self.buttons[i][1]['text'] == self.human_symbol and self.buttons[i][2]['text'] == ''):
+                self.available_buttons.append(self.buttons[i][2])
+            if (self.buttons[i][1][self.human_symbol] == self.buttons[i][2][self.human_symbol] and self.buttons[i][0]['text'] == ''):
+                self.available_buttons.append(self.buttons[i][0])
+            if (self.buttons[i][0][self.human_symbol] == self.buttons[i][2][self.human_symbol] and self.buttons[i][1]['text'] == ''):
+                self.available_buttons.append(self.buttons[i][1])
         #for rows
-            if self.buttons[0][i][self.human_symbol] == self.buttons[1][i][self.human_symbol] and self.buttons[2][j]['text'] = '':
-                pick empty place
-            if self.buttons[0][i][self.human_symbol] == self.buttons[2][i][self.human_symbol] and self.buttons[1][j]['text'] = '':
-                pick empty place
-            if self.buttons[1][i][self.human_symbol] == self.buttons[2][i][self.human_symbol] and self.buttons[0][j]['text'] = '':
-                pick empty place
+            if (self.buttons[0][i][self.human_symbol] == self.buttons[1][i][self.human_symbol] and self.buttons[2][j]['text'] == ''):
+                self.available_buttons.append(self.buttons[2][j])
+            if (self.buttons[0][i][self.human_symbol] == self.buttons[2][i][self.human_symbol] and self.buttons[1][j]['text'] == ''):
+                self.available_buttons.append(self.buttons[1][j])
+            if (self.buttons[1][i][self.human_symbol] == self.buttons[2][i][self.human_symbol] and self.buttons[0][j]['text'] == ''):
+                self.available_buttons.append(self.buttons[0][j])
         #for the diagonals
-        if self.buttons[0][0][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[2][2]['text'] = '':
-                pick empty place
-        if self.buttons[0][0][self.human_symbol] == self.buttons[2][2][self.human_symbol] and self.buttons[1][1]['text'] = '':
-                pick empty place
-        if self.buttons[2][2][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[0][0]['text'] = '':
-                pick empty place
-        if self.buttons[0][2][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[2][0]['text'] = '':
-                pick empty place
-        if self.buttons[0][2][self.human_symbol] == self.buttons[2][0][self.human_symbol] and self.buttons[1][1]['text'] = '':
-                pick empty place
-        if self.buttons[2][0][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[0][2]['text'] = '':
-                pick empty place
-
+        if (self.buttons[0][0][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[2][2]['text'] == ''):
+                self.available_buttons.append(self.buttons[2][2])
+        if (self.buttons[0][0][self.human_symbol] == self.buttons[2][2][self.human_symbol] and self.buttons[1][1]['text'] == ''):
+                self.available_buttons.append(self.buttons[1][1])
+        if (self.buttons[2][2][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[0][0]['text'] == ''):
+                self.available_buttons.append(self.buttons[0][0])
+        if (self.buttons[0][2][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[2][0]['text'] == ''):
+                self.available_buttons.append(self.buttons[2][0])
+        if (self.buttons[0][2][self.human_symbol] == self.buttons[2][0][self.human_symbol] and self.buttons[1][1]['text'] == ''):
+                self.available_buttons.append(self.buttons[1][1])
+        if (self.buttons[2][0][self.human_symbol] == self.buttons[1][1][self.human_symbol] and self.buttons[0][2]['text'] == ''):
+                self.available_buttons.append(self.buttons[0][2])
+        if self.available_buttons:
+            row, column = random.choice(self.available_buttons)
+            self.buttons[row][column]['text'] = self.comp_symbol #for now we go with the symbol O. we now need to find a way to make it chose random symbol from a list
+            self.buttons[row][column]['state'] = 'disabled' #disabling the use of a button twice
+            self.buttons[row][column]['bg'] = self.comp_color
 
 
 
