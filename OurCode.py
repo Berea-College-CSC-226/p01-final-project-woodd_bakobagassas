@@ -100,23 +100,11 @@ class Level1:
         for i in range(3):
             if self.buttons[i][0]['text'] == self.buttons[i][1]['text'] == self.buttons[i][2]['text'] and self.buttons[i][0]['text'] != '':
                 self.pick_winner(self.buttons[i][0]['text'])
-                if "text" ==  self.comp_symbol:
-                    self.comp_score += 1
-                    self.display_score()
-                if "text" ==  self.human_symbol:
-                    self.human_score += 1
-                    self.display_score()
                 return True
             # Check Columns
         for j in range(3):
             if self.buttons[0][j]['text'] == self.buttons[1][j]['text'] == self.buttons[2][j]['text'] and self.buttons[0][j]['text']!= '':
                 self.pick_winner(self.buttons[0][j]['text'])
-                if "text" ==  self.comp_symbol:
-                    self.comp_score += 1
-                    self.display_score()
-                if "text" ==  self.human_symbol:
-                    self.human_score += 1
-                    self.display_score()
                 return True
             #Check diagonal
             if self.buttons[0][0]['text'] == self.buttons[1][1]['text'] == self.buttons[2][2]['text'] and self.buttons[0][0]['text'] != '':
@@ -126,12 +114,6 @@ class Level1:
             if self.buttons[0][2]['text'] == self.buttons[1][1]['text'] == self.buttons[2][0]['text'] and \
                     self.buttons[0][2]['text'] != '':
                 self.pick_winner(self.buttons[0][2]['text'])
-                if "text" ==  self.comp_symbol:
-                    self.comp_score += 1
-                    self.display_score()
-                if "text" ==  self.human_symbol:
-                    self.human_score += 1
-                    self.display_score()
                 return True
 
             'check draw'
