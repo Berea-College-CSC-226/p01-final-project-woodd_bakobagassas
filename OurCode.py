@@ -262,6 +262,16 @@ class Level3(level2):
         self.level = 3
         self.display_level()  # Update level display to Level 3
 
+    def is_winning_move(self, row, col, symbol):
+        'Check if placing the symbol in (row, col) will make the player win
+        # shortly place the symbol and check if it wins
+        self.buttons[row][col]['text'] = symbol
+        self.buttons[row][col]['state'] = 'disabled'
+        is_win = self.check_winner()
+        self.buttons[row][col]['text'] = ''  # Reset the cell
+        self.buttons[row][col]['state'] = 'normal'
+        return is_win
+
 
 
 if __name__ == "__main__":
