@@ -115,6 +115,9 @@ a) celebrate the great work you all did together as an effective team, or b) ind
 your team did not contribute their fair share. Grades will be adjusted for any team member who is evaluated poorly. Your
 commit history will be used as evidence, so make sure you are using git effectively!
 
+We think we both contribute equitably to the project. We were all invested, we were meeting often to talk and work and 
+we were always communicating when we ran into issues. We are both really proud of our work!!
+
 ### Reflection
 
 Each partner should write three to four well-written paragraphs address the following (at a minimum):
