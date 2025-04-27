@@ -88,25 +88,34 @@ Indicate what percentage of the project you have left to complete and how confid
 
 ## Milestone 4: Final Code, Presentation, Demo
 
-### ❗User Instructions
+### User Instructions
 
 In a paragraph, explain how to use your program. Assume the user is starting just after they hit the "Run" button 
 in PyCharm. 
 
-### ❗Errors and Constraints
+First, the user will have to choose a symbol/name as well as a color. Then the game officially starts. The user will always be playing first 
+against the computer. The user places their symbol on a box followed by the computer. For the first level the computer 
+is taking it easy and randomly places symbols. Who ever has their symbol placed in a whole rows/column/diagonal then they 
+win. No matter who wins Level 1, the user will be asked if they want to move 
+to the next level, same for level 2. Furthermore, when there is a tie, the user will also be asked if they want to reset in order to 
+continue playing. 
+
+### Errors and Constraints
 
 Every program has bugs or features that had to be scrapped for time. These bugs should be tracked in the issue queue. 
 You should already have a few items in here from the prior weeks. Create a new issue for any undocumented errors and 
 deficiencies that remain in your code. Bugs found that aren't acknowledged in the queue will be penalized.
 
-### ❗Peer Evaluation
+(done)
+
+### Peer Evaluation
 
 It is important that all members of your team contribute equitably. The peer evaluation is your chance to either 
 a) celebrate the great work you all did together as an effective team, or b) indicate to the instructor if a member of
 your team did not contribute their fair share. Grades will be adjusted for any team member who is evaluated poorly. Your
 commit history will be used as evidence, so make sure you are using git effectively!
 
-### ❗Reflection
+### Reflection
 
 Each partner should write three to four well-written paragraphs address the following (at a minimum):
 - Why did you select the project that you did?
