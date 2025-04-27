@@ -152,20 +152,30 @@ class Level1:
         # Ask once after showing the message
         self.root.after(1500, self.reset_game)
 
-
     def reset_game(self):
         'Restarts the game'
         # Reset buttons
         if not self.game_over:
             return  # Avoid resetting if the game isn't over
 
-        choice = messagebox.askyesno("Next Step", "Would you like to go to Level 2?\nClick 'No' to just reset the current level.")
+        choice = messagebox.askyesno("Next Step",
+                                     "Would you like to go to Level 2?\nClick 'No' to reset the current level or 'Yes' to go to Level 2.")
 
         if choice:
             # Proceed to Level 2
             self.root.winfo_children()  # Clear all existing widgets in the root window
             game = level2(self.root)  # Start level 2 on the same root window
-            return  # Stop further reset of level 1
+            return  # Stop further reset of the current level
+
+        # asks if player wants to go to level 3
+        choice = messagebox.askyesno("Next Step",
+                                     "Would you like to go to Level 3?\nClick 'No' to reset the current level or 'Yes' to go to Level 3.")
+
+        if choice:
+            # go to Level 3
+            self.root.winfo_children()
+            game = Level3(self.root)
+            return
 
         # If not leveling up, just reset level 1
         self.game_over = False
@@ -223,6 +233,7 @@ class level2(Level1):
                 'text'] == ''):
                 self.available_buttons.append(self.buttons[i][1])
             # for rows
+        for j in range(3):
             if (self.buttons[0][i]['text'] == self.human_symbol and self.buttons[1][i]['text'] == self.human_symbol and self.buttons[2][i][
                 'text'] == ''):
                 self.available_buttons.append(self.buttons[2][j])
@@ -256,14 +267,51 @@ class level2(Level1):
             button['text'] = self.comp_symbol  # for now we go with the symbol O. we now need to find a way to make it chose random symbol from a list
             button['state'] = 'disabled'  # disabling the use of a button twice
             button['bg'] = self.comp_color
+            return
+        self.random_move()
+    def random_move(self):
+        'Random move if no winning or blocking opportunity'
+        self.available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == '']
+        if self.available_buttons:
+            row, column = random.choice(self.available_buttons)
+            self.make_move(row, column, self.comp_symbol)
+
+    def make_move(self, row, col, symbol):
+        'Make a move for the given symbol'
+        self.buttons[row][col]['text'] = symbol
+        self.buttons[row][col]['state'] = 'disabled'
+        self.buttons[row][col]['bg'] = self.comp_color if symbol == self.comp_symbol else self.human_color
+        if self.check_winner():
+            return
+
 class Level3(level2):
     def __init__(self, root):
         super().__init__(root)
         self.level = 3
         self.display_level()  # Update level display to Level 3
 
+    def computer_turn(self):
+        'Computer tries to block the player and win itself'
+
+        #Check if the computer can win
+        move = self.find_winning_move(self.comp_symbol)
+        if move:
+            row, column = move
+            self.make_move(row, column, self.comp_symbol)
+            return
+
+        # Check if the player is about to win and block it
+        move = self.find_winning_move(self.human_symbol)
+        if move:
+            row, column = move
+            self.make_move(row, column, self.comp_symbol)
+            return
+
+        #  Random move if no  winning or blocking
+        self.random_move()
+
     def find_winning_move(self, symbol):
-        '''Find if there’s a winning move for the given symbol (either computer or player)'''
+        'Find if there’s a winning move for the given symbol (either computer or player)'
         for i in range(3):
             # Check rows and columns
             for j in range(3):
@@ -278,7 +326,7 @@ class Level3(level2):
         return None  # No winning move
 
     def is_winning_move(self, row, col, symbol):
-        'Check if placing the symbol in (row, col) will make the player win
+        'Check if placing the symbol in (row, col) will make the player win'
         # shortly place the symbol and check if it wins
         self.buttons[row][col]['text'] = symbol
         self.buttons[row][col]['state'] = 'disabled'
@@ -288,7 +336,7 @@ class Level3(level2):
         return is_win
 
     def make_move(self, row, col, symbol):
-        '''Make a move for the given symbol'''
+        'Make a move for the given symbol'
         self.buttons[row][col]['text'] = symbol
         self.buttons[row][col]['state'] = 'disabled'
         self.buttons[row][col]['bg'] = self.comp_color if symbol == self.comp_symbol else self.human_color
@@ -296,7 +344,7 @@ class Level3(level2):
             return
 
     def random_move(self):
-        '''Random move if no winning or blocking opportunity'''
+        'Random move if no winning or blocking opportunity'
         self.available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == '']
         if self.available_buttons:
             row, column = random.choice(self.available_buttons)
