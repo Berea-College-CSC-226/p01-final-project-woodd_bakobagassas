@@ -159,14 +159,12 @@ class Level1:
         if not self.game_over:
             return  # Avoid resetting if the game isn't over
 
-        choice = messagebox.askyesno("Next Step","Would you like to go to Level 2?\nClick 'No' to just reset the current level.")
+        choice = messagebox.askyesno("Next Step", "Would you like to go to Level 2?\nClick 'No' to just reset the current level.")
 
         if choice:
             # Proceed to Level 2
-            self.root.destroy()  # Destroy current window
-            new_root = tk.Tk()
-            game = level2(new_root)  # Start level 2
-            new_root.mainloop()
+            self.root.winfo_children()  # Clear all existing widgets in the root window
+            game = level2(self.root)  # Start level 2 on the same root window
             return  # Stop further reset of level 1
 
         # If not leveling up, just reset level 1
@@ -258,6 +256,11 @@ class level2(Level1):
             button['text'] = self.comp_symbol  # for now we go with the symbol O. we now need to find a way to make it chose random symbol from a list
             button['state'] = 'disabled'  # disabling the use of a button twice
             button['bg'] = self.comp_color
+class Level3(level2):
+    def __init__(self, root):
+        super().__init__(root)
+        self.level = 3
+        self.display_level()  # Update level display to Level 3
 
 
 
