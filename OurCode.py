@@ -287,6 +287,20 @@ class Level3(level2):
         self.buttons[row][col]['state'] = 'normal'
         return is_win
 
+    def make_move(self, row, col, symbol):
+        '''Make a move for the given symbol'''
+        self.buttons[row][col]['text'] = symbol
+        self.buttons[row][col]['state'] = 'disabled'
+        self.buttons[row][col]['bg'] = self.comp_color if symbol == self.comp_symbol else self.human_color
+        if self.check_winner():
+            return
+
+    def random_move(self):
+        '''Random move if no winning or blocking opportunity'''
+        self.available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == '']
+        if self.available_buttons:
+            row, column = random.choice(self.available_buttons)
+            self.make_move(row, column, self.comp_symbol)
 
 
 if __name__ == "__main__":
