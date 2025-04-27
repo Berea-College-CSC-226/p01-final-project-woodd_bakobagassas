@@ -121,7 +121,27 @@ Each partner should write three to four well-written paragraphs address the foll
 ```
 
 ```
-    Partner 2: **Replace this text with your reflection
+    Partner 2:  
+    ** We selected this project looking for something simple but not too easy. but once we got the ground level
+    for the game we decided that we should add onto it by letting the player choose a color and their symbol. We also created
+    a couple of other levels so that the game would get more difficult. Our final project looked completely different from
+    what we originally had hoped for. Our original idea was just a basic tic tac toe game but we built upon that too increase
+    the computers difficulty and to allow for more customization. I learned that communicating ideas and issues with your 
+    partner, effectivley,  makes everything easier because its not just me being stuck on a loop of the same idea getting me
+    nowhere.
+    
+    The hardest part of this project for me was getting everything to work together correctly. We both had somewhat different
+    ideas that were for the most part the same thing. like i was trying to delete the window and make a new one for each level
+    but that messed up with the level 2 so sarah informed me that deleting the window was messing it up so i made it where it passes
+    all the stuff that needed to pass from the class level 2 into the window. We found issues with eachothers code and we talked
+    it through and got things solved.
+    
+    I would talk more with my partner than i did this time. We talked enough to get what we wanted to get done but their were
+    times where i thought i should of asked sarah something but i didnt. If i talked with her about my issue it probably would
+    of gone smoother and with less of a headache. It would also help clear up any confusion and misunderstandings. like 
+    when i was deleting the window; if i asked what we were doing exactly i would of tried to do it with out making a new 
+    window from the beginning. But all in all i felt that we worked really well. Even though I felt that i should of communicated
+    better with sarah i feel like we still worked really well together and communicated effectivly enough.**
 ```
 
 ---
