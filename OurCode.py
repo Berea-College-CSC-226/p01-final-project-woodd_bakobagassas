@@ -262,6 +262,21 @@ class Level3(level2):
         self.level = 3
         self.display_level()  # Update level display to Level 3
 
+    def find_winning_move(self, symbol):
+        '''Find if there’s a winning move for the given symbol (either computer or player)'''
+        for i in range(3):
+            # Check rows and columns
+            for j in range(3):
+                if self.buttons[i][j]['text'] == '' and self.is_winning_move(i, j, symbol):
+                    return i, j
+
+        # Check diagonals
+        for i, j in [(0, 0), (0, 2), (2, 0), (2, 2)]:
+            if self.buttons[i][j]['text'] == '' and self.is_winning_move(i, j, symbol):
+                return i, j
+
+        return None  # No winning move
+
     def is_winning_move(self, row, col, symbol):
         'Check if placing the symbol in (row, col) will make the player win
         # shortly place the symbol and check if it wins
