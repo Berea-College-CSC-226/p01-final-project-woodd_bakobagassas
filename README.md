@@ -126,7 +126,26 @@ Each partner should write three to four well-written paragraphs address the foll
 - How well did you work with your partner? What made it go well? What made it challenging?
 
 ```
-    Partner 1: **Replace this text with your reflection
+    Sara: I think we selected this project because it is a fun game that can also be instructive for both adults 
+    and kids as it stimulate cognitive thinking since the player is constantly finding a way to place their symbol 
+    in a strategic place in order to win. This game is what we wanted to do from the start, the only difference 
+    is that we actually expanded it to the point that we personalized colors and symbols as well as the levels of difficulty. 
+    
+    I learned alot about classes during this project as well as inheritence because we started this project a few weeks 
+    after we learned the topics. I also learned more about the GUI features because most of our code was about that, so 
+    i spent quite a lot of time reading the documentation for GUI. 
+    
+    The hardest part I think was just to find and correct a bug related to our inheritance. When we created more 
+    than one class, we had some bugs at first and we discoved it was because our window was distroyed in the reset 
+    method hence when we were getting attributes related errors when we were ready to move on to the Second class. 
+    A part from that I think the project went smoothly. Next time, I think I will try to test the full first Class 
+    before moving on to the other classes to be sure that everything is okay so that I don't spend that much time 
+    trying to figure out what is wrong. 
+    
+    I think I worked well with my partner. We were both communicating when needed and we were respectful of each other's 
+    time. When it happened that we could not meet for a good reason, we told each other and we were understanding. So I 
+    think what made it work is communication, respect for each other's time and work, understanding, as well as taking 
+    ownership of our actions. 
 ```
 
 ```
