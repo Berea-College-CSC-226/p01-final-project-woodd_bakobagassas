@@ -5,6 +5,8 @@ from tkinter import colorchooser, simpledialog, messagebox
 
 class Level1:
     def __init__(self, root):
+        '''Initialize the Level1 game with the given Tkinter root.
+        Return: None'''
         self.root = root
         self.root.title("Tic_Tac_Toe game")
         self.buttons = []
@@ -37,6 +39,8 @@ class Level1:
         self.score_label.place(x=400, y=0)
 
     def create_buttons(self):
+        '''Create and place the game buttons on the GUI screen.
+        Returns: None'''
         for i in range(3):
             row_buttons = []
             for j in range(3):
@@ -47,7 +51,7 @@ class Level1:
             self.buttons.append(row_buttons) #adding all created buttons from the grid to our list of buttons
 
     def human_turn(self, row, column):
-        ''' this draws the human initial to the screen'''
+        ''' this places the human initial to the screen'''
         self.buttons[row][column]['text'] = self.human_symbol # writing down the symbol on the button
         self.buttons[row][column]['state'] = 'disabled' # disabling the button
         self.buttons[row][column]['bg'] = self.human_color
@@ -55,10 +59,6 @@ class Level1:
             return
         if not self.game_over:
             self.root.after(1000, self.computer_turn)
-
-    def max_win_level2(self):
-        '''with this method, the computer tries to prevent user from winning and the computer is not trying to win'''
-        pass
 
     def choose_color_and_symbol(self):
         '''this enables the user to choose a color and a symbol'''
@@ -85,7 +85,8 @@ class Level1:
             self.comp_symbol = symbol
 
     def computer_turn(self):
-
+        '''Execute the computer's move (simple random selection).
+        Returns: None'''
         self.available_buttons = [(i, j) for i in range(3) for j in range(3) if self.buttons[i][j]['text'] == ''] # checking which
                                                                         #box is available amongst the total 9 boxes
                                                                         #by checking the boxes that don't have any text in them
@@ -98,7 +99,8 @@ class Level1:
                 return
 
     def check_winner(self):
-        'Checks for a winner by looking at the rows columns and diagonals'
+        '''Checks for a winner by looking at the rows columns and diagonals
+         Returns: True if there is a winner, False otherwise.'''
         # Check rows
         for i in range(3):
             if self.buttons[i][0]['text'] == self.buttons[i][1]['text'] == self.buttons[i][2]['text'] and self.buttons[i][0]['text'] != '':
@@ -156,7 +158,7 @@ class Level1:
         self.root.after(1500, self.reset_game)
 
     def reset_game(self):
-        'Restarts the game'
+        'Restarts the game for new round '
         if not self.game_over:
             return  # Avoid resetting if the game isn't over
 
@@ -210,8 +212,9 @@ class Level1:
 
 
 class level2(Level1):
-
     def __init__(self, root):
+        """Initialize the Level2 game with computer trying to block the user win.
+        Returns: None"""
         super().__init__(root)
         self.level = 2 # Update level display to Level 2
         self.display_level()
@@ -221,7 +224,7 @@ class level2(Level1):
         '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win
         this method will be used in our second class for level 1 instead of using the method that ranmly places computer symbol'''
 
-        self.available_buttons = []
+        self.available_buttons = [] #creating a list of available buttons
 
         #for rows
         for i in range(3):
@@ -296,6 +299,8 @@ class level2(Level1):
 
 class Level3(level2):
     def __init__(self, root):
+        """Initialize the Level3 game with the computer trying to both block but also win.
+        Returns: None"""
         super().__init__(root)
         self.level = 3
         self.display_level()  # Update level display to Level 3
@@ -336,6 +341,8 @@ class Level3(level2):
         return None  # No winning move
 
     def is_winning_move(self, row, col, symbol):
+        '''Check if placing the symbol at (row, col) would result in a win.
+        Returns: True if it would result in a win, False otherwise.'''
         original_text = self.buttons[row][col]['text']
         self.buttons[row][col]['text'] = symbol  # Temporarily simulate the move
         is_win = self.is_line_winner(symbol)  # Check if it results in a win
