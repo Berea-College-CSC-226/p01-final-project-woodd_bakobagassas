@@ -27,8 +27,9 @@ Exclamation Marks  ️indicate action items; you should remove these emoji as yo
     README. You can do this by saving an image in the repository and linking to it. See the sample CRC card below - 
     and REPLACE it with your own:
   
-![Don't leave me in your README!](image/Screenshot%202025-04-01%20191144.png)![Screenshot 2025-04-01 191209.png](image/Screenshot%202025-04-01%20191209.png)
-![Screenshot 2025-04-01 191221.png](image/Screenshot%202025-04-01%20191221.png) "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
+CRC cards 
+![Screenshot 2025-04-28 101658.png](../../Pictures/Screenshots/Screenshot%202025-04-28%20101658.png)
+![Screenshot 2025-04-28 102357.png](../../Pictures/Screenshots/Screenshot%202025-04-28%20102357.png)
 
 ️**Branches**: This project will **require** effective use of git. 
 

@@ -213,14 +213,13 @@ class level2(Level1):
 
     def __init__(self, root):
         super().__init__(root)
-        self.level = 2
+        self.level = 2 # Update level display to Level 2
         self.display_level()
 
 
     def computer_turn(self):
         '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win
         this method will be used in our second class for level 1 instead of using the method that ranmly places computer symbol'''
-
 
         self.available_buttons = []
 
