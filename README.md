@@ -30,6 +30,8 @@ Exclamation Marks  ️indicate action items; you should remove these emoji as yo
 CRC cards 
 ![Screenshot 2025-04-28 101658.png](../../Pictures/Screenshots/Screenshot%202025-04-28%20101658.png)
 ![Screenshot 2025-04-28 102357.png](../../Pictures/Screenshots/Screenshot%202025-04-28%20102357.png)
+![Screenshot 2025-04-28 104024.png](../../Pictures/Screenshots/Screenshot%202025-04-28%20104024.png)
+![Screenshot 2025-04-28 110839.png](../../Pictures/Screenshots/Screenshot%202025-04-28%20110839.png)
 
 ️**Branches**: This project will **require** effective use of git. 
 
