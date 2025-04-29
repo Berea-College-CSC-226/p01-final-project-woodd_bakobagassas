@@ -51,6 +51,9 @@ and describe how you integrated the ideas or code into your program. This includ
 helped you, AI tools you've used, and any other resources that are not solely your own contribution. Update this 
 section as you go. DO NOT forget about it!
 
+https://docs.python.org/3/library/tk.html 
+https://docs.python.org/3/library/tkinter.html#module-tkinter 
+https://chatgpt.com/share/68100687-8bb8-8007-8f09-1dbaf6941cca 
 ---
 
 ## Milestone 2: Code Setup and Issue Queue

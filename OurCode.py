@@ -1,7 +1,6 @@
 import tkinter as tk
 import random
 from tkinter import colorchooser, simpledialog, messagebox
-#import turtle #commented this out because it creates a whole new screen
 
 class Level1:
     def __init__(self, root):
