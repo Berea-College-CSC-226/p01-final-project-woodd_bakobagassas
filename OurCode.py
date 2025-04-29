@@ -8,9 +8,9 @@ class Level1:
         Return: None'''
         self.root = root
         self.root.title("Tic_Tac_Toe game")
-        self.buttons = []
+        self.buttons = [] # total buttons list
         self.create_buttons()
-        self.available_buttons = []
+        self.available_buttons = [] #available buttons list
         self.choose_color_and_symbol()
         self.computer_color()
         self.computer_symbol()
@@ -34,8 +34,7 @@ class Level1:
         '''this is to display the score, still need to set it up for score change when needed'''
         self.score_label = tk.Label(root, text=self.human_symbol + " score is:" + " " + str(self.human_score) + "  "
         + self.comp_symbol + " " + "score is:" + str(self.comp_score),font=("Arial", 8), bg="white")
-
-        self.score_label.place(x=400, y=0)
+        self.score_label.place(x=400, y=0) #placing the level
 
     def create_buttons(self):
         '''Create and place the game buttons on the GUI screen.
@@ -57,7 +56,7 @@ class Level1:
         if self.check_winner():
             return
         if not self.game_over:
-            self.root.after(1000, self.computer_turn)
+            self.root.after(1000, self.computer_turn) #making the computer wait before its turn
 
     def choose_color_and_symbol(self):
         '''this enables the user to choose a color and a symbol'''
@@ -65,21 +64,21 @@ class Level1:
         if symbol:
             self.human_symbol = symbol
 
-        color = colorchooser.askcolor(title="Choose your color")[1]
+        color = colorchooser.askcolor(title="Choose your color")[1] #displaying the colors box for the user to choose
         if color:
             self.human_color = color
 
     def computer_color(self):
         '''the computer is randomly picking a color'''
         color_options = ["lightpink", "gold", "salmon", "turquoise", "lightblue", "lightgrey", "lightgreen"]
-        color = random.choice(color_options)
+        color = random.choice(color_options) #choosing a random color from the list for the computer
         if color:
             self.comp_color = color
 
     def computer_symbol(self):
         '''the computer is randomly picking a symbol'''
         symbol_options = ["Moana", "Blue", "Error 404", "Player"]
-        symbol = random.choice(symbol_options)
+        symbol = random.choice(symbol_options) #choosing a random symbol from the list for the computer
         if symbol:
             self.comp_symbol = symbol
 
@@ -120,7 +119,6 @@ class Level1:
                 self.pick_winner(self.buttons[0][2]['text'])
                 return True
 
-            'check draw'
             # Check for draw only if no one has won and all buttons are disabled
             if all(self.buttons[i][j]['text'] != '' for i in range(3) for j in range(3)):
                 self.check_draw()
@@ -187,7 +185,6 @@ class Level1:
                     widget.destroy()
                 game = Level1(self.root)
                 return
-
         # Just reset the board
         self.game_over = False
         for i in range(3):
@@ -195,20 +192,9 @@ class Level1:
                 self.buttons[i][j]['text'] = ''
                 self.buttons[i][j]['state'] = 'normal'
                 self.buttons[i][j]['bg'] = 'lightgrey'
-
-        self.human_score = 0
-        self.comp_score = 0
-        self.choose_color_and_symbol()
-        self.computer_color()
-        self.computer_symbol()
-
-        # Update level and score
-        self.display_level()
-
         if self.result_label:
             self.result_label.destroy()
             self.result_label = None
-
 
 class level2(Level1):
     def __init__(self, root):
@@ -218,13 +204,11 @@ class level2(Level1):
         self.level = 2 # Update level display to Level 2
         self.display_level()
 
-
     def computer_turn(self):
         '''with this method, the computer tries to prevent user from winning, but the computer is not trying to win
         this method will be used in our second class for level 1 instead of using the method that ranmly places computer symbol'''
 
         self.available_buttons = [] #creating a list of available buttons
-
         #for rows
         for i in range(3):
             if (self.buttons[i][0]['text'] == self.human_symbol and self.buttons[i][1]['text'] == self.human_symbol and self.buttons[i][2]['text'] == ''):
@@ -248,7 +232,7 @@ class level2(Level1):
             if (self.buttons[1][j]['text'] == self.human_symbol and self.buttons[2][j]['text'] == self.human_symbol and
                     self.buttons[0][j]['text'] == ''):
                 self.available_buttons.append((0, j))
-        #for diagnals
+        #for diagonals
         if (self.buttons[0][0]['text'] == self.human_symbol and self.buttons[1][1]['text'] == self.human_symbol and
                 self.buttons[2][2]['text'] == ''):                self.available_buttons.append((2, 2))
         if (self.buttons[0][0]['text'] == self.human_symbol and self.buttons[2][2]['text'] == self.human_symbol and
@@ -268,7 +252,6 @@ class level2(Level1):
                 self.buttons[0][2]['text'] == ''):
             self.available_buttons.append((0, 2))
 
-
         if self.available_buttons:
             row, column = random.choice(self.available_buttons)
             self.buttons[row][column]['text'] = self.comp_symbol
@@ -285,7 +268,6 @@ class level2(Level1):
         if self.available_buttons:
             row, column = random.choice(self.available_buttons)
             self.make_move(row, column, self.comp_symbol)
-
             return
 
     def make_move(self, row, col, symbol):
@@ -320,7 +302,6 @@ class Level3(level2):
             row, column = move
             self.make_move(row, column, self.comp_symbol)
             return
-
         #  Random move if no  winning or blocking
         self.random_move()
 
